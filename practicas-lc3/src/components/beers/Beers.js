@@ -3,6 +3,8 @@ import BeerItem from '../beerItem/BeerItem';
 import CountBeer from '../countBeer/CountBeer';
 import BeerStyles from '../beerStyles/BeerStyles';
 
+import "./Beers.css"
+
 const Beers = () => {
     const beers = [
         {
@@ -75,15 +77,20 @@ const Beers = () => {
     return (
         <div>
             <h1>EJERCICIO 1</h1>
+            <div className='beers'>
             {beers.map((beer) =>
                 <BeerItem key={beer.id} id={beer.id} beerName={beer.beerName} beerStyle={beer.beerStyle} price={beer.price} />
             )}
+            </div>
             <hr />
 
             <h1>EJERCICIO 2</h1>
+            <div className='beers'>
             {beersFiltered.map((beer) =>
                 <BeerItem key={beer.id} id={beer.id} beerName={beer.beerName} beerStyle={beer.beerStyle} price={beer.price} />
+
             )}
+            </div>
             <hr />
 
             <h1>EJERCICIO 3</h1>
