@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import BeerItem from '../beerItem/BeerItem';
 import CountBeer from '../countBeer/CountBeer';
 import BeerStyles from '../beerStyles/BeerStyles';
 
 import "./Beers.css"
+import ChangeDollar from '../changeDolar/ChangeDolar';
 
 const Beers = () => {
+    const [dollar, setDollar] = useState(500);
+    const [changeDollar, setChangeDollar] = useState(false);
+
     const beers = [
         {
             id: 1,
@@ -72,14 +76,26 @@ const Beers = () => {
         },
     ];
 
+    const setDollarHandler = (dollarPriceNow) => {
+        setDollar(dollarPriceNow);
+    }
+
+    const changeDollarHandler = () => {
+        setChangeDollar(!changeDollar);
+    }
+
     const beersFiltered = beers.filter((beer) => beer.available === true);
 
     return (
         <div>
+            {changeDollar === false && <button type="button" className="btn btn-primary" onClick={changeDollarHandler}>Actualizar precio del dolar</button>}
+            {changeDollar === true && <button type="button" className="btn btn-secondary" onClick={changeDollarHandler}>Esconder</button>}
+            {changeDollar !== false && <ChangeDollar setDollarHandler={setDollarHandler} dollar={dollar}/>}
+            <hr/>
             <h1>EJERCICIO 1</h1>
             <div className='beers'>
             {beers.map((beer) =>
-                <BeerItem key={beer.id} id={beer.id} beerName={beer.beerName} beerStyle={beer.beerStyle} price={beer.price} />
+                <BeerItem key={beer.id} id={beer.id} beerName={beer.beerName} beerStyle={beer.beerStyle} price={beer.price * dollar} available={beer.available} />
             )}
             </div>
             <hr />
@@ -87,7 +103,7 @@ const Beers = () => {
             <h1>EJERCICIO 2</h1>
             <div className='beers'>
             {beersFiltered.map((beer) =>
-                <BeerItem key={beer.id} id={beer.id} beerName={beer.beerName} beerStyle={beer.beerStyle} price={beer.price} />
+                <BeerItem key={beer.id} id={beer.id} beerName={beer.beerName} beerStyle={beer.beerStyle} price={beer.price * dollar} available={beer.available} />
 
             )}
             </div>
