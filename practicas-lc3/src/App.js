@@ -1,13 +1,13 @@
-import './App.css';
-import Beers from './components/beers/Beers';
+import React from 'react';
+import Login from './components/login';
 
-function App() {
-
+const App = () => {
   return (
-    <div className="App">
-      <Beers />
+    <div>
+      <h1>¡Bienvenido!</h1>
+      <Login /> {}
     </div>
   );
-}
+};
 
 export default App;
